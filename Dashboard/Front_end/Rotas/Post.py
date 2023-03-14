@@ -1,6 +1,7 @@
 # blibiotecas
 from flask import flash,request,session,url_for,redirect,render_template
 from werkzeug.utils import secure_filename
+from pathlib import Path
 import os
 import bcrypt
 #importa as APIs Usuarios,Login e seus metodos
@@ -9,8 +10,11 @@ from Apis import Usuarios,Login,Producao,Dados_producao
 #gera chave para cryptografia
 chave = bcrypt.gensalt()
 
+ 
 #caminho padrão para imagens do prefil
-UPLOAD_FOLDER = "static\imagens\Perfil"
+
+UPLOAD_FOLDER = Path(__file__).parent.parent/"static\imagens\Perfil"
+print(UPLOAD_FOLDER)
 
 # gera a instancia do app para não causar circular inport
 def init_App(App):
